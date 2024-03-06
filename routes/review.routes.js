@@ -1,13 +1,19 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const Review = require("../models/Review.model.js");
+const Cafe = require("../models/Cafe.model.js");
 
 // const { isAuthenticated } = require("./middleware/jwt.middleware.js");
 
 //POST
-router.post("/reviews", (req, res, next) => {
+router.post("/reviews/:cafeId", (req, res, next) => {
+  const { cafeId } = req.params;
   Review.create(req.body)
-    .then((newReview) => res.status(201).json(newReview))
+    .then((newReview) => {
+      const reviewId = newReview._id
+      return Cafe.findByIdAndUpdate(cafeId, { $push: { reviews: reviewId } })
+        .then(() => res.status(201).json(newReview))
+    })
     .catch((err) => {
       next(err);
     });

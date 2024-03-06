@@ -11,7 +11,7 @@ router.post("/cafes", (req, res, next) => {
     .then((newCafe) => res.status(201).json(newCafe))
     .catch((err) => {
       next(err);
-    });
+    });   
 });
 
 //READ - LIST OF ALL CAFES

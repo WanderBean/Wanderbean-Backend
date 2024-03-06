@@ -21,10 +21,10 @@ const cafeSchema = new Schema(
             adress: { type: String, required: [true, "Adress is required."] }
         }],
         specs: Array,
-        reviews: {
+        reviews: [{
             type: Schema.Types.ObjectId,
             ref: "Review",
-        }
+        }]
     },
 );
 
