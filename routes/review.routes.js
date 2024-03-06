@@ -16,7 +16,7 @@ router.post("/reviews", isAuthenticated, (req, res, next) => {
 //READ
 router.get("/reviews", (req, res, next) => {
   Review.find()
-    .populate("reviews") // populate cafes instead?????
+    .populate("user")
     .then((allReviews) => res.status(200).json(allReviews))
     .catch((err) => {
       next(err);
