@@ -2,10 +2,10 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 const Cafe = require("../models/Cafe.model.js");
 
-const { isAuthenticated } = require("./middleware/jwt.middleware.js");
+// const { isAuthenticated } = require("./middleware/jwt.middleware.js");
 
 //POST - USER NEEDS TO BE LOGGED IN
-router.post("/cafes", isAuthenticated, (req, res, next) => {
+router.post("/cafes", (req, res, next) => {
   /// We need to check the URL
   Cafe.create(req.body)
     .then((newCafe) => res.status(201).json(newCafe))
@@ -35,7 +35,7 @@ router.get("/cafes/:cafeId", (req, res, next) => {
 });
 
 //UPDATE - USER NEEDS TO BE LOGGED IN
-router.get("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
+router.put("/cafes/:cafeId", (req, res, next) => {
   Cafe.findByIdAndUpdate(req.params.cafeId, req.body, { new: true })
     .then((updatedCafe) => res.status(200).json(updatedCafe))
     .catch((err) => {
@@ -44,7 +44,7 @@ router.get("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
 });
 
 //DELETE - USER NEEDS TO BE LOGGED IN
-router.get("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
+router.delete("/cafes/:cafeId", (req, res, next) => {
   Cafe.findByIdAndDelete(req.params.cafeId)
     .then(() => res.status(204).send())
     .catch((err) => {

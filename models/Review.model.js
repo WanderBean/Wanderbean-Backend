@@ -12,8 +12,12 @@ const reviewSchema = new Schema(
         },
         stars: { type: String, enum: ["1", "2", "3", "4", "5"]}, //// Check this!
         user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "User",
+        },
+        cafe: {
+            type: Schema.Types.ObjectId,
+            ref: "Cafe"
         }
     },
 );

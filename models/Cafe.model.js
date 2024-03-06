@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose");   //const Schema = mongoose.Schema;
 
 const cafeSchema = new Schema(
     {
@@ -22,8 +22,8 @@ const cafeSchema = new Schema(
         }],
         specs: Array,
         reviews: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Reviews",
+            type: Schema.Types.ObjectId,
+            ref: "Review",
         }
     },
 );
