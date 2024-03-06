@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const Review = require("../models/Review.model.js");
 const Cafe = require("../models/Cafe.model.js");
 
-// const { isAuthenticated } = require("./middleware/jwt.middleware.js");
+const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 //POST
-router.post("/reviews/:cafeId", (req, res, next) => {
+router.post("/reviews/:cafeId", isAuthenticated, (req, res, next) => {
   const { cafeId } = req.params;
   Review.create(req.body)
     .then((newReview) => {
