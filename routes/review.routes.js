@@ -11,11 +11,13 @@ router.post("/reviews/:cafeId", isAuthenticated, (req, res, next) => {
   const { cafeId } = req.params;
   const userId = req.payload._id;   // get userId from payload
 
-  User.findById(userId)
-    .then((user) => {
-      req.body.user = { name: user.name };  // Currently we only display the name of the user - if we want to add more infos, change this {}.
-      return Review.create(req.body);
-    })
+  const reviewNew = {
+    title: req.body.title,
+    description: req.body.description,
+    user: userId
+  }
+
+  Review.create(reviewNew)
     .then((newReview) => {
       const reviewId = newReview._id
       return Cafe.findByIdAndUpdate(cafeId, { $push: { reviews: reviewId } })     // Update Cafe & add reviewId to the array "reviews"
