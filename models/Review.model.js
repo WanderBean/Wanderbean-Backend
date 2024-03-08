@@ -5,9 +5,9 @@ const reviewSchema = new Schema({
     type: String,
     required: [true, "Title is required."],
   },
-  content: {
+  description: {
     type: String,
-    required: [true, "Content is required."],
+    required: [true, "Description is required."],
   },
   stars: { type: String, enum: ["1", "2", "3", "4", "5"] }, //// Check this!
   user: {
