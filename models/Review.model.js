@@ -10,10 +10,7 @@ const reviewSchema = new Schema({
     required: [true, "Description is required."],
   },
   stars: { type: Number, enum: [1,2,3,4,5] }, //// Check this!
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
+  user: String,
 });
 
 const Review = model("Review", reviewSchema);

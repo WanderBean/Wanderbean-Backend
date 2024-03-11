@@ -9,13 +9,13 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 //POST
 router.post("/reviews/:cafeId", isAuthenticated, (req, res, next) => {
   const { cafeId } = req.params;
-  const userId = req.payload._id;   // get userId from payload
+  const userName = req.payload.name;   // get userId from payload
 
   const reviewNew = {
     title: req.body.title,
     description: req.body.description,
     stars: req.body.stars,
-    user: userId
+    user: userName
   }
 
   Review.create(reviewNew)
