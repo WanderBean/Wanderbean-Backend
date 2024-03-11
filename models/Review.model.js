@@ -9,7 +9,7 @@ const reviewSchema = new Schema({
     type: String,
     required: [true, "Description is required."],
   },
-  stars: { type: String, enum: ["1", "2", "3", "4", "5"] }, //// Check this!
+  stars: { type: Number, enum: [1,2,3,4,5] }, //// Check this!
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

@@ -14,6 +14,7 @@ router.post("/reviews/:cafeId", isAuthenticated, (req, res, next) => {
   const reviewNew = {
     title: req.body.title,
     description: req.body.description,
+    stars: req.body.stars,
     user: userId
   }
 
