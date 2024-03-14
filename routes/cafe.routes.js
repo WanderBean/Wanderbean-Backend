@@ -10,8 +10,13 @@ router.post("/cafes", isAuthenticated, (req, res, next) => {
     .then((newCafe) => res.status(201).json(newCafe))
     .catch((err) => {
       next(err);
-    });   
+    });
 });
+
+if (req.body.title === "" || req.body.description === "") {
+  res.status(401).json({ message: "Please enter a title & description." });
+  return;
+}
 
 //READ - LIST OF ALL CAFES
 router.get("/cafes", (req, res, next) => {
