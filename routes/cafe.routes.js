@@ -19,7 +19,7 @@ router.post("/cafes", isAuthenticated, (req, res, next) => {
     req.body.location[0].city === "" ||
     req.body.location[0].address === ""
   ) {
-    res.status(401).json({ message: "Please enter a title & description." });
+    res.status(401).json({ message: "Please enter all required fields." });
     return;
   }
 });
@@ -58,7 +58,7 @@ router.put("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
     req.body.location[0].city === "" ||
     req.body.location[0].address === ""
   ) {
-    res.status(401).json({ message: "Please enter a title & description." });
+    res.status(401).json({ message: "Please enter all required fields." });
     return;
   }
 });
