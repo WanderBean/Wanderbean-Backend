@@ -18,6 +18,11 @@ router.post("/reviews/:cafeId", isAuthenticated, (req, res, next) => {
     user: userName
   }
 
+  if (req.body.title === "" || req.body.description === "") {
+    res.status(401).json({ message: "Please enter a title & description." });
+    return;
+  }
+
   Review.create(reviewNew)
     .then((newReview) => {
       const reviewId = newReview._id
