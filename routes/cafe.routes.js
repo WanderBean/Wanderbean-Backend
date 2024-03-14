@@ -11,12 +11,18 @@ router.post("/cafes", isAuthenticated, (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-});
 
-if (req.body.title === "" || req.body.description === "") {
-  res.status(401).json({ message: "Please enter a title & description." });
-  return;
-}
+  if (
+    req.body.title === "" ||
+    req.body.image === "" ||
+    req.body.description === "" ||
+    req.body.location[0].city === "" ||
+    req.body.location[0].address === ""
+  ) {
+    res.status(401).json({ message: "Please enter a title & description." });
+    return;
+  }
+});
 
 //READ - LIST OF ALL CAFES
 router.get("/cafes", (req, res, next) => {
@@ -45,6 +51,16 @@ router.put("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+  if (
+    req.body.title === "" ||
+    req.body.image === "" ||
+    req.body.description === "" ||
+    req.body.location[0].city === "" ||
+    req.body.location[0].address === ""
+  ) {
+    res.status(401).json({ message: "Please enter a title & description." });
+    return;
+  }
 });
 
 //DELETE - USER NEEDS TO BE LOGGED IN
