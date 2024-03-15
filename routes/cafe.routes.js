@@ -6,22 +6,25 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 //POST - USER NEEDS TO BE LOGGED IN
 router.post("/cafes", isAuthenticated, (req, res, next) => {
-  Cafe.create(req.body)
-    .then((newCafe) => res.status(201).json(newCafe))
-    .catch((err) => {
-      next(err);
-    });
+
+  console.log(req.body);
 
   if (
     req.body.title === "" ||
     req.body.image === "" ||
     req.body.description === "" ||
-    req.body.location[0].city === "" ||
-    req.body.location[0].address === ""
+    req.body.location.city === "" ||
+    req.body.location.address === ""
   ) {
     res.status(401).json({ message: "Please enter all required fields." });
     return;
   }
+
+  Cafe.create(req.body)
+    .then((newCafe) => res.status(201).json(newCafe))
+    .catch((err) => {
+      next(err);
+    });
 });
 
 //READ - LIST OF ALL CAFES
@@ -61,7 +64,7 @@ router.put("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
     res.status(401).json({ message: "Please enter all required fields." });
     return;
   }
-});
+}); 
 
 //DELETE - USER NEEDS TO BE LOGGED IN
 router.delete("/cafes/:cafeId", isAuthenticated, (req, res, next) => {
