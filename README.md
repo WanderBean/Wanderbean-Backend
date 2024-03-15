@@ -21,13 +21,14 @@ https://github.com/WanderBean/Wanderbean-Frontend </p>
 git clone https://github.com/WanderBean/Wanderbean-Backend.git
 ```
 
-<p>Install all NPM dependencies: Tailwind</p>
+<p>Install all npm dependencies</p>
 
 ```
 npm install
 ```
 
-<p>Create a .env file in the root directory to add environment variables & the secret for the token. AddYourSecretHere can be replaced by your choice.</p>
+<p>Create a .env file in the root directory to add environment variables & the secret for the token. <br>
+AddYourSecretHere can be replaced by your choice.</p>
 
 ```
 PORT=5005
